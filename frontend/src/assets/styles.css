@@ -1,0 +1,353 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Montserrat", sans-serif;
+}
+body {
+ 
+  background-color: #082900;
+  background-image: url("https://www.transparenttextures.com/patterns/foggy-birds.png");
+  padding: 0 16px;
+}
+
+header {
+  background-color: #15501e;
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+footer {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+footer p {
+  color: #ccc;
+}
+.note {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 240px;
+  margin: 16px;
+  float: left;
+}
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+}
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note button {
+  position: relative;
+  float: right;
+  margin-right: 10px;
+  color: #04792b;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #0b440f;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+.auth-container {
+  width: 400px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+.auth-form h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-form p {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-form input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.auth-form button {
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: #076b34;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.auth-form .google {
+  background-color: #db4437;
+}
+
+.form-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.form-toggle button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #09661d;
+  margin: auto -16px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-icon {
+  color: white;
+  font-size: 40px;
+}
+
+
+.paragraph {
+  color: white;
+}
+
+
+.chatbot-container {
+  margin-top: 1rem;
+}
+
+.chatbot-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+.chatbot-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.chatbot-messages {
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.chatbot-message {
+  margin: 6px 0;
+  font-size: 0.95rem;
+}
+
+.chatbot-message.user {
+  text-align: right;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.chatbot-message.ai {
+  text-align: left;
+  color: #21863a;
+  font-size: 0.9rem;
+}
+
+.chatbot-input-row{
+  display: flex;
+  gap: 5px;
+}
+
+.chatbot-input {
+  flex: 1;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.chatbot-send-button {
+background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-wrapper {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.note {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 400px;
+  margin: 16px;
+  float: left;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chat-toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.note-chat {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 7px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chatbot-send-button svg {
+  width: 24px;
+  height: 24px;
+  fill: #086441;
+  transition: transform 0.2s ease;
+}
+
+.chatbot-send-button:hover svg {
+  transform: scale(1.2);
+}
+
+
+.chat-toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none; 
+}
+
+.chat-toggle-button .icon {
+
+
+  fill: #888; 
+  transition: fill 0.3s ease;
+}
+
+.chat-toggle-button .icon.active {
+ 
+  fill: #0b7dda; 
+}

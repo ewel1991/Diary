@@ -1,122 +1,108 @@
 
-# Aplikacja Notatki z Autoryzacją
+# Aplikacja Notatek z Chatbotem Gemini AI
 
-Prosta aplikacja webowa do tworzenia, wyświetlania i usuwania notatek powiązanych z użytkownikiem. Zawiera system rejestracji i logowania, w tym logowanie przez Google OAuth2.
+## Opis
+
+To aplikacja webowa do zarządzania notatkami z funkcją logowania oraz chatbotem wykorzystującym model Google Gemini AI. Użytkownicy mogą się rejestrować i logować za pomocą emaila lub Google OAuth. Aplikacja pozwala na tworzenie, przeglądanie i usuwanie notatek oraz komunikację z chatbotem AI.
 
 ---
 
 ## Funkcjonalności
 
-- Rejestracja i logowanie użytkownika (lokalne + Google OAuth2)
-- Utrzymanie sesji użytkownika (express-session + passport)
-- Tworzenie, wyświetlanie i usuwanie własnych notatek
-- Notatki przechowywane w bazie PostgreSQL powiązanej z kontem użytkownika
-- Interfejs w React, backend w Node.js/Express
+- Rejestracja i logowanie (email + hasło, Google OAuth)
+- Autoryzacja sesyjna z Passport.js i express-session
+- Bezpieczne przechowywanie haseł (bcrypt)
+- Zarządzanie notatkami (tworzenie, wyświetlanie, usuwanie)
+- Chatbot AI oparty o Google Gemini (model `gemini-2.5-flash`)
+- Walidacja danych (email, hasło)
+- Komunikacja frontend-backend z CORS i sesjami
 
 ---
 
 ## Technologie
 
-- Frontend: React
-- Backend: Node.js, Express, Passport.js
+- Backend: Node.js, Express.js
 - Baza danych: PostgreSQL
-- Autoryzacja: Passport lokalna oraz Google OAuth2
-- Haszowanie haseł: bcrypt
-- Sesje: express-session
-- Komunikacja: REST API, JSON, cookies (credentials: include)
+- Autentykacja: Passport.js (LocalStrategy i Google OAuth2)
+- Bezpieczeństwo: bcrypt, express-session
+- AI: Google Generative AI (Gemini)
+- Frontend: React.js (z funkcjami CRUD i chatbotem)
+- Walidacja: validator.js
 
 ---
 
 ## Instalacja i uruchomienie
 
-### Backend
+1. **Klonuj repozytorium**
 
-1. Skonfiguruj bazę PostgreSQL i utwórz odpowiednie tabele (`users`, `notes`).
+```bash
+git clone <URL_REPOZYTORIUM>
+cd <nazwa-folderu>
+```
 
-2. Stwórz plik `.env` z takimi zmiennymi:
+2. **Zainstaluj zależności**
+
+```bash
+npm install
+```
+
+3. **Utwórz plik `.env` i uzupełnij zmienne środowiskowe:**
 
 ```
-PG_USER=twoj_user
+PG_USER=twoj_uzytkownik
 PG_HOST=localhost
 PG_DATABASE=twoja_baza
 PG_PASSWORD=twoje_haslo
 PG_PORT=5432
 
-SESSION_SECRET=sekretny_klucz_sesji
+SESSION_SECRET=twoj_sekretny_klucz
 
 GOOGLE_CLIENT_ID=xxx.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=yyy
+GOOGLE_CLIENT_SECRET=xxx
+
+GEMINI_API_KEY=twoj_klucz_api_gemini
 ```
 
-3. Zainstaluj zależności i uruchom backend:
+4. **Uruchom backend**
 
 ```bash
-npm install
-node index.js
-```
-
-Backend działa pod http://localhost:3000
-
----
-
-### Frontend
-
-W katalogu frontend zainstaluj zależności:
-
-```bash
-npm install
 npm start
 ```
 
-Frontend działa domyślnie pod http://localhost:5173
+Backend będzie dostępny pod adresem: `http://localhost:3000`
 
----
+5. **Uruchom frontend (React)**
 
-## Struktura bazy danych (przykład)
-
-```sql
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE notes (
-  id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  title TEXT,
-  content TEXT,
-  deleted BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+```bash
+cd frontend-folder
+npm install
+npm run dev
 ```
 
----
-
-## API
-
-| Metoda | Endpoint    | Opis                                      |
-| ------ | ----------- | ----------------------------------------- |
-| POST   | /register   | Rejestracja użytkownika (email, password) |
-| POST   | /login      | Logowanie użytkownika                     |
-| POST   | /logout     | Wylogowanie                               |
-| GET    | /me         | Sprawdzenie sesji użytkownika             |
-| GET    | /notes      | Pobranie notatek zalogowanego użytkownika |
-| POST   | /notes      | Dodanie nowej notatki                     |
-| DELETE | /notes/:id  | Usunięcie notatki                         |
+Frontend działa domyślnie na `http://localhost:5173`
 
 ---
 
-## Uwagi
+## Endpoints API
 
-- Autoryzacja i sesje oparte są o cookies (credentials: include).
-- Logowanie przez Google wymaga konfiguracji OAuth2 w Google Cloud Console oraz poprawnego callback URL.
-- Hasła są przechowywane w formie zaszyfrowanej (bcrypt).
-- Notatki są dostępne tylko dla właściciela (autoryzacja po stronie backendu).
+- `POST /register` – rejestracja użytkownika  
+- `POST /login` – logowanie lokalne  
+- `GET /me` – sprawdzenie statusu zalogowania  
+- `POST /logout` – wylogowanie  
+- `GET /notes` – pobranie notatek użytkownika (autoryzacja wymagana)  
+- `POST /notes` – dodanie notatki (autoryzacja wymagana)  
+- `DELETE /notes/:id` – usunięcie notatki (autoryzacja wymagana)  
+- `POST /api/gemini` – wywołanie modelu Gemini AI (chatbot)  
 
 ---
 
-## Kontakt
+## Użycie
 
-W razie pytań lub sugestii proszę pisać na:  
-ewelina.beben.programista@gmail.com
+Po rejestracji lub zalogowaniu, użytkownik może zarządzać swoimi notatkami oraz korzystać z chatbot’a Gemini, który odpowiada na wpisane pytania.
+
+---
+
+## Licencja
+
+Projekt na licencji MIT.
+

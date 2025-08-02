@@ -12,6 +12,8 @@ import validator from "validator";
 import { GoogleGenerativeAI } from "@google/generative-ai"; // ✅ NOWE
 
 env.config();
+console.log('PG_PASSWORD:', process.env.PG_PASSWORD);
+console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
 
 const app = express();
 const port = 3000;

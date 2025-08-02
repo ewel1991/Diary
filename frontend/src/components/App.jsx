@@ -5,6 +5,9 @@ import Note from "./note/Note";
 import CreateArea from "./note/CreateArea";
 import Auth from "./auth/Auth";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [notes, setNotes] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,7 +15,7 @@ function App() {
 
 async function fetchNotes() {
     try {
-      const notesRes = await fetch("http://localhost:3000/notes", {
+      const notesRes = await fetch(`${API_URL}/notes`, {
         credentials: "include",
       });
       if (notesRes.ok) {
@@ -32,7 +35,7 @@ async function fetchNotes() {
  useEffect(() => {
     const checkLoginAndFetchNotes = async () => {
       try {
-        const res = await fetch("http://localhost:3000/me", {
+        const res = await fetch(`${API_URL}/me`, {
           credentials: "include",
         });
         if (res.ok) {
@@ -66,7 +69,7 @@ async function fetchNotes() {
   }
 
     try {
-      const res = await fetch("http://localhost:3000/notes", {
+      const res = await fetch(`${API_URL}/notes`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -94,7 +97,7 @@ async function fetchNotes() {
   // Usuń notatkę w backend i lokalnie
   async function deleteNote(id) {
     try {
-      const res = await fetch(`http://localhost:3000/notes/${id}`, {
+      const res = await fetch(`${API_URL}/notes/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
@@ -116,7 +119,7 @@ async function fetchNotes() {
 
   async function handleLogout() {
     try {
-      const res = await fetch("http://localhost:3000/logout", {
+      const res = await fetch(`${API_URL}/logout`, {
         method: "POST",
         credentials: "include",
       });

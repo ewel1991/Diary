@@ -6,10 +6,15 @@ import bcrypt from "bcrypt";
 import sessionPkg from "express-session";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import GoogleStrategy from "passport-google-oauth2";
+import { Strategy as GoogleStrategy }from "passport-google-oauth2";
 import env from "dotenv";
 import validator from "validator";
-import { GoogleGenerativeAI } from "@google/generative-ai"; // ✅ NOWE
+import { GoogleGenerativeAI } from "@google/generative-ai"; 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 env.config();
 console.log('PG_PASSWORD:', process.env.PG_PASSWORD);
@@ -63,7 +68,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false,
+      secure: true,
       sameSite: "lax",
       maxAge: 24 * 60 * 60 * 1000,
     },
@@ -152,7 +157,7 @@ passport.use(
   new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/notes",
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:3000/auth/google/notes",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   }, async (accessToken, refreshToken, profile, cb) => {
     try {
@@ -337,6 +342,12 @@ app.delete("/notes/:id", ensureAuthenticated, async (req, res) => {
     console.error("Notes delete error:", err);
     res.status(500).json({ message: "Failed to delete note" });
   }
+});
+
+app.use(express.static(path.join(__dirname, "frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 app.listen(port, "0.0.0.0", () => {

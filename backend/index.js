@@ -16,7 +16,7 @@ console.log('PG_PASSWORD:', process.env.PG_PASSWORD);
 console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID);
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const saltRounds = 10;
 
 const session = sessionPkg;
@@ -339,6 +339,6 @@ app.delete("/notes/:id", ensureAuthenticated, async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server listening at http://0.0.0.0:${port}`);
 });

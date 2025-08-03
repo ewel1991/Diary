@@ -48,7 +48,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // 🔧 Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://165.232.72.71'],
+  origin: ['http://localhost:5173', 'http://68.183.215.186'],
   credentials: true,
 }));
 
@@ -150,7 +150,7 @@ passport.use(
   new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://165.232.72.71:3000/auth/google/notes",
+    callbackURL: "http://68.183.215.186:3000/auth/google/notes",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   }, async (accessToken, refreshToken, profile, cb) => {
     try {
@@ -347,5 +347,5 @@ app.get(/^\/(?!api|auth|login|register|logout|me|notes).*/, (req, res) => {
 });
 
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server listening at http://165.232.72.71:${port}`);
+  console.log(`Server listening at http://68.183.215.186:${port}`);
 });

@@ -349,7 +349,7 @@ const staticPath = path.join(__dirname, "../frontend/dist");
 console.log("Static path:", staticPath);
 app.use(express.static(staticPath));
 
-app.get("*", (req, res) => {
+app.get(/^\/(?!api|auth|login|register|logout|me|notes).*/, (req, res) => {
   res.sendFile(path.join(staticPath, "index.html"));
 });
 

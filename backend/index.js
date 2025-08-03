@@ -345,14 +345,13 @@ app.delete("/notes/:id", ensureAuthenticated, async (req, res) => {
 });
 
 
-//const staticPath = path.join(__dirname, "frontend/dist");
-//console.log("Static path:", staticPath);
-//app.use(express.static(staticPath));
+const staticPath = path.join(__dirname, "../frontend/dist");
+console.log("Static path:", staticPath);
+app.use(express.static(staticPath));
 
-
-//app.get("*", (req, res) => {
-  //res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
-//});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(staticPath, "index.html"));
+});
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server listening at http://165.232.72.71:${port}`);

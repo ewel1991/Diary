@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const API_URL = "http://68.183.215.186:3000";
+
 function LoginForm({ onSwitch, onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +10,7 @@ function LoginForm({ onSwitch, onLogin }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +42,7 @@ function LoginForm({ onSwitch, onLogin }) {
       <button type="button" 
       className="google"
       onClick={() => {
-      window.location.href = "http://localhost:3000/auth/google";
+      window.location.href = `${API_URL}/auth/google`;
     }}
       >Log In with Google</button>
       <p>- or -</p>

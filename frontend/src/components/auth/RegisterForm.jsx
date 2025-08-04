@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+
+const API_URL = "http://68.183.215.186:3000";
+
 function RegisterForm({ onSwitch }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +19,7 @@ function RegisterForm({ onSwitch }) {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/register", {
+      const res = await fetch(`${API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

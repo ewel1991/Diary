@@ -78,7 +78,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Zmieniony endpoint Gemini na model gemini-2.5-flash
 app.post("/api/gemini", async (req, res) => {
   const messages = req.body.messages;
 

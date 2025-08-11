@@ -364,3 +364,9 @@ background: transparent;
 .note-date {
   text-align: right;
 }
+
+.note h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #15501e;
+}

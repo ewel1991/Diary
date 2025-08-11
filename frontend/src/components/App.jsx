@@ -182,7 +182,6 @@ async function generateAdvice() {
 
       {advice && (
         <div className="advice" style={{ margin: '16px auto', padding: '12px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
-          <h4>Twoja spójna porada:</h4>
           <p>{advice}</p>
         </div>
       )}

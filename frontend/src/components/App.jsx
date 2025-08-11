@@ -171,24 +171,24 @@ async function generateAdvice() {
       <Header onLogout={handleLogout} />
       <CreateArea onAdd={addNote} />
 
-      <div style={{ maxWidth: '400px', margin: '16px auto' }}>
+      <div className="advice-block" style={{ width: '100%', padding: '0 16px', boxSizing: 'border-box', marginTop: '20px' }}>
       <button 
         onClick={generateAdvice} 
         disabled={loadingAdvice} 
-        style={{ width: '100%', padding: '10px', fontSize: '16px', marginTop: '20px' }}
+        style={{ width: '100%', maxWidth: '600px', padding: '10px', fontSize: '16px', margin: '0 auto', display: 'block' }}
       >
         {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
       </button>
 
       {advice && (
-        <div className="advice" style={{ marginTop: '16px' }}>
-          <h2>Twoja spójna porada:</h2>
+        <div className="advice" style={{ maxWidth: '600px', margin: '16px auto', padding: '12px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
+          <h3>Twoja spójna porada:</h3>
           <p>{advice}</p>
         </div>
       )}
     </div>
-    <div></div>
 
+  <div style={{ maxWidth: '600px', margin: '24px auto' }}>
       {notes.length === 0 && <p className="paragraph">Brak notatek do wyświetlenia</p>}
       {notes.map((note) => (
         <Note
@@ -200,7 +200,7 @@ async function generateAdvice() {
           onDelete={deleteNote}
         />
       ))}
-     
+       </div>
   
       <Footer />
     </div>

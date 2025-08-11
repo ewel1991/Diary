@@ -18,7 +18,7 @@ function Note(props) {
   const formattedDate = props.date
     ? new Date(props.date).toLocaleDateString("pl-PL", {
         year: "numeric",
-        month: "long",
+        month: "short",
         day: "numeric",
       })
     : "";
@@ -28,7 +28,7 @@ function Note(props) {
   <div className="note-wrapper">
     <div className="note">
      {formattedDate && (
-          <small className="note-date">Utworzono: {formattedDate}</small>
+          <small className="note-date"> {formattedDate}</small>
         )}
       <h1>{props.title}</h1>
       <p>{props.content}</p>

@@ -14,11 +14,26 @@ function Note(props) {
     setShowChat((prev) => !prev);
   }
 
+ // Formatowanie daty
+  const formattedDate = props.date
+    ? new Date(props.date).toLocaleDateString("pl-PL", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+    : "";
+
+
   return (
   <div className="note-wrapper">
     <div className="note">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
+       {formattedDate && (
+          <small className="note-date">Utworzono: {formattedDate}</small>
+        )}
       <div className="note-actions">
         <button onClick={handleClick}>
           <DeleteIcon />
@@ -31,7 +46,7 @@ function Note(props) {
           </button>
       </div>
 
-      {/* 🟢 PRZENIESIONY CZAT */}
+     
       {showChat && (
         <div className="note-chat">
           <Chatbot  noteContent={props.content} onClose={() => setShowChat(false)} />

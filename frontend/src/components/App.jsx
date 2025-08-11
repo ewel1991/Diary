@@ -152,6 +152,7 @@ async function fetchNotes() {
           id={note.id}
           title={note.title}
           content={note.content}
+          date={note.created_at}
           onDelete={deleteNote}
         />
       ))}

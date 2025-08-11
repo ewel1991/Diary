@@ -351,3 +351,16 @@ background: transparent;
  
   fill: #0b7dda; 
 }
+
+
+.note-date {
+  display: block; 
+  font-size: 0.85rem; 
+  color: #777; 
+  margin-top: 6px;
+  font-style: italic; 
+}
+
+.note-date {
+  text-align: right;
+}

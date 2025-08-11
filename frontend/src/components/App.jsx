@@ -175,13 +175,13 @@ async function generateAdvice() {
       <button 
         onClick={generateAdvice} 
         disabled={loadingAdvice} 
-        style={{ width: '100%', maxWidth: '600px', padding: '10px', fontSize: '16px', margin: '0 auto', display: 'block' }}
+        style={{ width: '100%', padding: '10px', fontSize: '16px', margin: '0 auto', display: 'block' }}
       >
         {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
       </button>
 
       {advice && (
-        <div className="advice" style={{ maxWidth: '600px', margin: '16px auto', padding: '12px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
+        <div className="advice" style={{ margin: '16px auto', padding: '12px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
           <h3>Twoja spójna porada:</h3>
           <p>{advice}</p>
         </div>

@@ -20,8 +20,6 @@ function Note(props) {
         year: "numeric",
         month: "long",
         day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
       })
     : "";
 
@@ -29,11 +27,12 @@ function Note(props) {
   return (
   <div className="note-wrapper">
     <div className="note">
-      <h1>{props.title}</h1>
-      <p>{props.content}</p>
-       {formattedDate && (
+     {formattedDate && (
           <small className="note-date">Utworzono: {formattedDate}</small>
         )}
+      <h1>{props.title}</h1>
+      <p>{props.content}</p>
+      
       <div className="note-actions">
         <button onClick={handleClick}>
           <DeleteIcon />

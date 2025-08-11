@@ -167,7 +167,7 @@ async function generateAdvice() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <Header onLogout={handleLogout} />
       <CreateArea onAdd={addNote} />
 

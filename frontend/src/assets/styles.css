@@ -5,12 +5,18 @@
 }
 html {
   font-family: "Montserrat", sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 body {
  
   background-color: #082900;
   background-image: url("https://www.transparenttextures.com/patterns/foggy-birds.png");
   padding: 0 16px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -27,7 +33,7 @@ header h1 {
 }
 
 footer {
-  position: absolute;
+  position: static;
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -380,4 +386,15 @@ background: transparent;
   width: 100%;
   margin: 16px;
   float: center;
+}
+
+
+.app-container {
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container > *:not(footer) {
+  flex-grow: 1; 
 }

@@ -13,6 +13,9 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [advice, setAdvice] = useState("");
+  const [loadingAdvice, setLoadingAdvice] = useState(false);
+
 
 async function fetchNotes() {
     try {
@@ -135,6 +138,28 @@ async function fetchNotes() {
     }
   }
 
+async function generateAdvice() {
+  setLoadingAdvice(true);
+  try {
+    const res = await fetch(`${API_URL}/api/generateAdvice`, {
+      method: "POST",
+      credentials: "include",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setAdvice(data.advice);
+    } else {
+      alert("Nie udało się wygenerować porady");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Błąd połączenia z serwerem");
+  } finally {
+    setLoadingAdvice(false);
+  }
+}
+
+
   if (loading) return <p>Loading...</p>;
 
   if (!isLoggedIn) {
@@ -156,6 +181,16 @@ async function fetchNotes() {
           onDelete={deleteNote}
         />
       ))}
+      <button onClick={generateAdvice} disabled={loadingAdvice} style={{marginTop: '20px'}}>
+        {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
+    </button>
+
+    {advice && (
+      <div className="advice-box" style={{marginTop: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px'}}>
+        <h2>Twoja spójna porada:</h2>
+        <p>{advice}</p>
+      </div>
+    )}
       <Footer />
     </div>
   );

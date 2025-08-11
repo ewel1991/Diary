@@ -116,6 +116,45 @@ app.post("/api/gemini", async (req, res) => {
   }
 });
 
+app.post("/api/generateAdvice", ensureAuthenticated, async (req, res) => {
+  try {
+    const notesResult = await db.query("SELECT content FROM notes WHERE user_id = $1", [req.user.id]);
+    if (notesResult.rows.length === 0) {
+      return res.status(400).json({ message: "Brak notatek do analizy." });
+    }
+
+    // Łączenie wszystkich notatek w jeden tekst
+    const combinedContent = notesResult.rows.map(row => row.content).join("\n\n");
+
+    const prompt = `Użytkownik ma następujące notatki:\n${combinedContent}\n\nNa podstawie powyższych notatek, proszę wygeneruj jedną spójną poradę.`;
+
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 2048,
+      },
+      safetySettings: [
+        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: 3 },
+        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: 3 },
+        { category: "HARM_CATEGORY_HARASSMENT", threshold: 3 },
+        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: 3 },
+      ],
+      thinkingConfig: { thinkingBudget: 0 },
+    });
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const adviceText = response.text();
+
+    res.json({ advice: adviceText });
+  } catch (error) {
+    console.error("Gemini generateAdvice error:", error);
+    res.status(500).json({ message: "Błąd generowania porady" });
+  }
+});
+
+
 // ✅ PASSPORT STRATEGY
 passport.use(
   new LocalStrategy(

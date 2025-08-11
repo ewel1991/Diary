@@ -188,8 +188,9 @@ async function generateAdvice() {
       )}
     </div>
 
-  <div style={{margin: '24px auto',
-    display: 'flex',
+  <div style={{
+  margin: '24px auto',
+  display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
   gap: '16px',

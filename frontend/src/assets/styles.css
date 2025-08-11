@@ -277,7 +277,9 @@ background: transparent;
 
 .note-wrapper {
   margin-bottom: 20px;
-  width: 100%;
+  width: auto;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .note {

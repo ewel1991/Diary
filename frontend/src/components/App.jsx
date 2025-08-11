@@ -187,6 +187,7 @@ async function generateAdvice() {
         </div>
       )}
     </div>
+    <div></div>
 
       {notes.length === 0 && <p className="paragraph">Brak notatek do wyświetlenia</p>}
       {notes.map((note) => (

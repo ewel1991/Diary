@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 
 
 const API_URL = "http://68.183.215.186:3000";
@@ -33,7 +33,7 @@ const Chatbot = ({ noteContent }) => {
     }
   };
 
-  const handleSend = async (messageText) => {
+  const handleSend = async (messageText = "") => {
     const userMessage = messageText?.trim() || input.trim();
     if (!userMessage) return;
 

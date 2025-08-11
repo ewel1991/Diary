@@ -188,7 +188,7 @@ async function generateAdvice() {
       )}
     </div>
 
-  <div style={{ maxWidth: '600px', margin: '24px auto' }}>
+  <div style={{margin: '24px auto' }}>
       {notes.length === 0 && <p className="paragraph">Brak notatek do wyświetlenia</p>}
       {notes.map((note) => (
         <Note

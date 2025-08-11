@@ -398,8 +398,3 @@ background: transparent;
   flex-grow: 1; 
 }
 
-.notes-block {
- 
-  display: flex;
-  flex-direction: row;
-}

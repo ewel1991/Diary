@@ -170,6 +170,24 @@ async function generateAdvice() {
     <div>
       <Header onLogout={handleLogout} />
       <CreateArea onAdd={addNote} />
+
+      <div style={{ maxWidth: '400px', margin: '16px auto' }}>
+      <button 
+        onClick={generateAdvice} 
+        disabled={loadingAdvice} 
+        style={{ width: '100%', padding: '10px', fontSize: '16px', marginTop: '20px' }}
+      >
+        {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
+      </button>
+
+      {advice && (
+        <div className="note" style={{ marginTop: '16px' }}>
+          <h2>Twoja spójna porada:</h2>
+          <p>{advice}</p>
+        </div>
+      )}
+    </div>
+
       {notes.length === 0 && <p className="paragraph">Brak notatek do wyświetlenia</p>}
       {notes.map((note) => (
         <Note
@@ -181,15 +199,7 @@ async function generateAdvice() {
           onDelete={deleteNote}
         />
       ))}
-      <button onClick={generateAdvice} disabled={loadingAdvice} style={{marginTop: '20px'}}>
-        {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
-    </button>
-        {advice && (
-          <div className="note" style={{width: '400px', margin: '16px auto 32px auto', float: 'none'}}>
-            <h2>Twoja spójna porada:</h2>
-            <p>{advice}</p>
-          </div>
-        )}
+     
   
       <Footer />
     </div>

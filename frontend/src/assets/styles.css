@@ -390,11 +390,16 @@ background: transparent;
 
 
 .app-container {
-  min-height: 100vh; /* pełna wysokość okna */
+  min-height: 100vh; 
   display: flex;
-  flex-direction: column;
 }
 
 .app-container > *:not(footer) {
-  flex-grow: 1; /* rozciągnięcie głównej zawartości na dostępną przestrzeń */
+  flex-grow: 1; 
+}
+
+.notes-block {
+ 
+  display: flex;
+  flex-direction: row;
 }

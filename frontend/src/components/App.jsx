@@ -181,7 +181,7 @@ async function generateAdvice() {
       </button>
 
       {advice && (
-        <div className="note" style={{ marginTop: '16px' }}>
+        <div className="advice" style={{ marginTop: '16px' }}>
           <h2>Twoja spójna porada:</h2>
           <p>{advice}</p>
         </div>

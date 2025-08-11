@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 
 const API_URL = "http://68.183.215.186:3000";
-const Chatbot = () => {
+
+const Chatbot = ({ noteContent }) => {
   const [chat, setChat] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,10 +33,10 @@ const Chatbot = () => {
     }
   };
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  const handleSend = async (messageText) => {
+    const userMessage = messageText?.trim() || input.trim();
+    if (!userMessage) return;
 
-    const userMessage = input.trim();
     setChat((prev) => [...prev, { role: "user", message: userMessage }]);
     setInput("");
     setLoading(true);
@@ -52,6 +53,13 @@ const Chatbot = () => {
     setChat((prev) => [...prev, { role: "ai", message: aiReply }]);
     setLoading(false);
   };
+
+  useEffect(() => {
+    if (noteContent) {
+      handleSend(`Na podstawie tej notatki daj mi praktyczną poradę: "${noteContent}"`);
+    }
+    
+  }, [noteContent]);
 
   return (
     <div className="chatbot-container">

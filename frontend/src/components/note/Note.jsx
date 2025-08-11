@@ -18,8 +18,8 @@ function Note(props) {
   const formattedDate = props.date
     ? new Date(props.date).toLocaleDateString("pl-PL", {
         year: "numeric",
-        month: "short",
-        day: "numeric",
+        month: "2-digit",
+        day: "2-digit",
       })
     : "";
 

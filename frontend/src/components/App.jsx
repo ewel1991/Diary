@@ -177,12 +177,12 @@ async function generateAdvice() {
         disabled={loadingAdvice} 
         style={{ width: '100%', padding: '10px', fontSize: '16px', margin: '0 auto', display: 'block' }}
       >
-        {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę"}
+        {loadingAdvice ? "Generuję poradę..." : "Wygeneruj poradę dla wszystkich notatek"}
       </button>
 
       {advice && (
         <div className="advice" style={{ margin: '16px auto', padding: '12px', backgroundColor: '#f0f0f0', borderRadius: '8px' }}>
-          <h3>Twoja spójna porada:</h3>
+          <h4>Twoja spójna porada:</h4>
           <p>{advice}</p>
         </div>
       )}

@@ -56,7 +56,7 @@ const Chatbot = ({ noteContent }) => {
 
   useEffect(() => {
     if (noteContent) {
-      handleSend(`Na podstawie tej notatki daj mi praktyczną poradę: "${noteContent}"`);
+      handleSend(`Na podstawie tej notatki daj mi poradę: "${noteContent}"`);
     }
     
   }, [noteContent]);
